@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import restaurantData from "restaurantData.js"
+// import restaurantData from "restaurantData.json"
 
 const mapStyles = {
     map: {
@@ -10,11 +10,7 @@ const mapStyles = {
     }
   };
 
-  // const facilityPins = this.props.facilities.map((facility, index) => {
-  //   return <FacilityPin onClick = {() => this.setPinAsCenter(facility)} key = {index} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}
-  //   handlePinClick={this.handleOnClick} facility={facility} hover={this.state.hover} lat={facility.latitude} lng={facility.longitude}
-  // />
-  // });
+ 
 
 export class CurrentLocation extends React.Component {
    
@@ -27,11 +23,7 @@ export class CurrentLocation extends React.Component {
             lat: lat,
             lng: lng
         },
-        //     markerLocation: {
-        //     latMarker: this.props.lat,
-        //     lngMarker: this.props.lng
-           
-        // }
+
     };
     }
       
@@ -136,6 +128,13 @@ export class CurrentLocation extends React.Component {
 
 
       render() {
+
+  //        const facilityPins = this.props.restaurantData.map((facility, index) => {
+  //   return <FacilityPin onClick = {() => this.setPinAsCenter(facility)} key = {index} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}
+  //   handlePinClick={this.handleOnClick} facility={facility} hover={this.state.hover} lat={facility.lat} lng={facility.long}
+  // />
+  // });
+
         const style = Object.assign({}, mapStyles.map);
        return (
          <div>
@@ -143,7 +142,7 @@ export class CurrentLocation extends React.Component {
              Loading map...
            </div>
            {this.renderChildren()}
-           {/* {facilityPins} */}
+  
          </div>
        );
      }

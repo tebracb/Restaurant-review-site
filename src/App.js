@@ -1,8 +1,10 @@
 import React from 'react';
 import './App.css';
 import { GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
+import restaurantData from "./restaurantData.json";
 
 import CurrentLocation from './Map';
+
 
 export class MapContainer extends React.Component {
 
@@ -33,13 +35,40 @@ onClose = props => {
 };
 
   render() {
+   
+    const facilityPins = restaurantData.map(item => {
+        return ( 
 
+        <Marker onClick={this.onMarkerClick} 
+        key={item.address}
+          position={{
+          lat: item.lat,
+          lng: item.long,
+        }}
+        name = {item.restaurantName}
+        icon = {URL="http://maps.google.com/mapfiles/ms/icons/purple-pushpin.png"}
+        
+        
+        />
+        )}
+    )
+
+
+      //   <div key= {item.address} lat={item.lat} lng={item.long}>
+      //     {console.log(item.lat)}
+      //     <img style={markerStyle} src={"https://maps.google.com/mapfiles/kml/paddle/grn-circle.png"} alt="pin" />
+      //   </div>     
+      // );
+      
+  
     return (
+      <div>
       <CurrentLocation
       centerAroundCurrentLocation
       google={this.props.google}
     >
-      <Marker onClick={this.onMarkerClick} name={'current location'} />
+      <Marker onClick={this.onMarkerClick} name={'Current location'} />
+      {facilityPins}
       <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
@@ -50,7 +79,11 @@ onClose = props => {
           </div>
         </InfoWindow>
         
+        
     </CurrentLocation>
+    
+    </div>
+    
       
       //   <Map
       //     google={this.props.google}
